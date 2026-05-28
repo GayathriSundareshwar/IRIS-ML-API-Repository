@@ -27,7 +27,9 @@ jobs:
       - name: Run training script
         run: |
           python iris_train.py
-
+      - name: Verify artifacts
+        run: |
+          ls artifacts
       - name: Build Docker image
         run: |
           docker build -t iris-new-api-through-github .
