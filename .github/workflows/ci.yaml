@@ -30,6 +30,16 @@ jobs:
       - name: Verify artifacts
         run: |
           ls artifacts
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
       - name: Build Docker image
         run: |
-          docker build -t iris-new-api-through-github .
+          docker build -t gsundareshwar/iris-ml-api-gitdoc-repository:v1 .
+
+      - name: Push Docker image
+        run: |
+          docker push gsundareshwar/iris-ml-api-gitdoc-repository:v1
