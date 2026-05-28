@@ -1,0 +1,9 @@
+{
+  "target_names": [
+    "setosa",
+    "versicolor",
+    "virginica"
+  ],
+  "model_owner": "Gayathri Sundareshwar",
+  "model_version": "1.2.3"
+}

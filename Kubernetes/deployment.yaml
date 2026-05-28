@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+
+kind: Deployment #create a deployment manager for our application
+
+metadata:
+  name: iris-api-deployment
+
+spec:
+  replicas: 3 #number of pods to be created for our application
+
+  selector:
+    matchLabels:
+      app: iris-api #label selector to identify the pods that belong to this deployment
+
+  template:
+    metadata:
+      labels:
+        app: iris-api #label to be applied to the pods created by this deployment
+
+    spec:
+      containers:
+        - name: iris-api-container #name of the container
+          image: iris-new-api #name of the image to be used for the container
+          imagePullPolicy: IfNotPresent #use local image if available else pull from registry
+
+          ports:
+            - containerPort: 8000 #port on which the container will listen for incoming traffic
+
+          env:
+            - name: API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: iris-api-secret
+                  key: API_KEY
