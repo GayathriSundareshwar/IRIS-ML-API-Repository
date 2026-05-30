@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: iris-api-container #name of the container
-          image: iris-ml-api-new-gitpushed-repository #name of the image to be used for the container
+          image: gsundareshwar/iris-ml-api-new-gitpushed-repository:v1 #name of the image to be used for the container
           imagePullPolicy: Always #use docker hub always
 
           ports:
