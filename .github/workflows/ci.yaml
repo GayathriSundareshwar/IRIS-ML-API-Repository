@@ -53,3 +53,8 @@ jobs:
           kubectl rollout restart deployment iris-api-deployment
           kubectl rollout status deployment iris-api-deployment
           kubectl get pods
+      - name: Verify API through Kubernetes
+        run: |
+          kubectl port-forward service/iris-api-service 8000:80 > port-forward.log 2>&1 &
+          sleep 10
+          curl -f http://localhost:8000/docs
