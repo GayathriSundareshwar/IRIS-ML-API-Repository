@@ -10,6 +10,10 @@ jobs:
 
     runs-on: self-hosted
 
+    env:
+        AGENT_TOOLSDIRECTORY: /Users/gayus/hostedtoolcache
+        RUNNER_TOOL_CACHE: /Users/gayus/hostedtoolcache
+    
     steps:
 
       - name: Checkout code
