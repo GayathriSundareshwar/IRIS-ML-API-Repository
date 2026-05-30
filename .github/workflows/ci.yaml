@@ -8,7 +8,7 @@ on:
 jobs:
   test-and-build:
 
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
 
@@ -42,4 +42,10 @@ jobs:
 
       - name: Push Docker image
         run: |
-          docker push gsundareshwar/iris-ml-api-new-gitpushed-repository:v1
+          docker push gsundareshwar/iris-ml-api-new-gitpushed-repository:v1 
+      - name: Deploy to local Kubernetes
+        run: |
+          kubectl apply -f Kubernetes/
+          kubectl rollout restart deployment iris-api-deployment
+          kubectl rollout status deployment iris-api-deployment
+          kubectl get pods
