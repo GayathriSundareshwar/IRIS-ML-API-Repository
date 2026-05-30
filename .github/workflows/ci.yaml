@@ -38,8 +38,8 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t gsundareshwar/iris-ml-api-gitdoc-repository:v1 .
+          docker build -t gsundareshwar/iris-ml-api-new-gitpushed-repository:v1 .
 
       - name: Push Docker image
         run: |
-          docker push gsundareshwar/iris-ml-api-gitdoc-repository:v1
+          docker push gsundareshwar/iris-ml-api-new-gitpushed-repository:v1
