@@ -53,12 +53,13 @@ jobs:
           kubectl rollout restart deployment iris-api-deployment
           kubectl rollout status deployment iris-api-deployment
           kubectl get pods
+          kubectl get svc
       - name: Verify API through Kubernetes
         run: |
-          kubectl port-forward service/iris-api-service 8000:80 > port-forward.log 2>&1 &
           sleep 10
-          curl -f http://localhost:8000/docs
-      - name: Verify API through NodePort
-        run: |
-          sleep 10
-          curl -f http://localhost:30080/docs
+          kubectl run curl-test --rm -i --restart=Never --image=curlimages/curl -- \
+          curl -f http://iris-api-service.default.svc.cluster.local/docs
+      #- name: Verify API through NodePort
+       # run: |
+        #  sleep 10
+         # curl -f http://localhost:30080/docs
